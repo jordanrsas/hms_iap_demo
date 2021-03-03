@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      HMS IAP Ionic Demo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">HMS IAP</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-card>
+      <h5>Consumible disponible</h5>
+      <ion-item *ngFor="let product of products.consumable">
+        <ion-label>{{product.productName}}</ion-label>
+        <ion-button (click)="createPurchaseIntent(product, 'consumable')" color="primary">{{product.price}}</ion-button>
+      </ion-item>
+      <h5 *ngIf="products.purchased_consumable.length > 0">Consumible comprado</h5>
+      <ion-item *ngFor="let product of products.purchased_consumable">
+        <ionic-label>{{product.name}}</ionic-label>
+        <ionic-button (click)="consumeOwnedPurchase(product, product.purchaseData, 'consumable')" color="primary">Consumir</ionic-button>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>
